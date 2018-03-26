@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-5 12:47:54 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.restraurant.entity.Member" table="member">
+        <id name="memberId" type="java.lang.String">
+            <column name="memberid" />
+            <generator class="assigned" />
+        </id>
+        <property name="memberName" type="java.lang.String">
+            <column name="membername" />
+        </property>
+        <property name="memberPhone" type="java.lang.String">
+            <column name="memberphone" />
+        </property>
+        <property name="memberPassword" type="java.lang.String">
+            <column name="memberpassword" />
+        </property>
+        <property name="shopName" type="java.lang.String">
+            <column name="shopname" />
+        </property>
+        <property name="shopAdress" type="java.lang.String">
+            <column name="shopadress" />
+        </property>
+        <property name="shopImgUrl" type="java.lang.String">
+            <column name="shopimgurl" />
+        </property>
+        <property name="shopMessage" type="java.lang.String">
+            <column name="shopmessage" />
+        </property>
+        <many-to-one name="area" class="com.restraurant.entity.Area" fetch="join">
+            <column name="area" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

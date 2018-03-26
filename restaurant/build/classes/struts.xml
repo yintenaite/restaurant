@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+  <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+     <!-- 默认的视图主题 -->
+    <constant name="struts.ui.theme" value="simple" />
+    <!--<constant name="struts.objectFactory" value="spring" />-->
+    <!--解决乱码    -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
+    <constant name="struts.multipart.saveDir " value="d:/tmp" />
+    <constant name="struts.locale" value="UTF-8" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <include file="struts_config.xml"></include> 
+</struts>

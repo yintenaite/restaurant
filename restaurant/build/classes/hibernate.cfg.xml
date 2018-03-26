@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<!-- 配置hibernate的基本属性 -->
+    	<!-- 方言 -->
+    		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    	<!-- 	是否显示格式化 -->
+    		<property name="hibernate.show_sql">true</property>
+    		<property name="hibernate.format_sql">true</property>
+    	<!-- 生成数据表的策略 -->
+    		<property name="hibernate.hbm2ddl.auto">update</property>
+    	<!-- 二级缓存相关 -->
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<!-- 配置实体类 -->
+	<bean id="user" class="com.restraurant.entity.User" scope="prototype"></bean>
+	<bean id="product" class="com.restraurant.entity.Product" scope="prototype"></bean>
+	<bean id="Member" class="com.restraurant.entity.Member" scope="prototype"></bean>
+	<!-- 配置工具类 -->
+	<!-- 配置Dao -->
+	<bean id="userDao" class="com.restraurant.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="orderManagerDao" class="com.restraurant.dao.OrderManagerDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="payDao" class="com.restraurant.dao.PayDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="commentDao" class="com.restraurant.dao.CommentDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="productDao" class="com.restraurant.dao.ProductDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="shopDao" class="com.restraurant.dao.ShopDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 配置Service -->
+	<bean id="userService" class="com.restraurant.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="orderManagerService" class="com.restraurant.service.OrderManagerService">
+		<property name="orderManagerDao" ref="orderManagerDao"></property>
+	</bean>
+	<bean id="payService" class="com.restraurant.service.PayService">
+		<property name="payDao" ref="payDao"></property>
+	</bean>
+	<bean id="commentService" class="com.restraurant.service.CommentService">
+		<property name="commentDao" ref="commentDao"></property>
+	</bean>
+	<bean id="productService" class="com.restraurant.service.ProductService">
+		<property name="productDao" ref="productDao"></property>
+	</bean>
+	<bean id="shopService" class="com.restraurant.service.ShopService">
+		<property name="shopDao" ref="shopDao"></property>
+	</bean>
+	<!-- 配置Action -->
+	<bean id="userAction" class="com.restraurant.action.UserAction">
+		<property name="userService" ref="userService"></property>
+		<property name="user" ref="user"></property>
+	</bean>
+	<bean id="orderManagerAction" class="com.restraurant.action.OrderManagerAction">
+		<property name="orderManagerService" ref="orderManagerService"></property>
+	</bean>
+	<bean id="payAction" class="com.restraurant.action.PayAction">
+		<property name="payService" ref="payService"></property>
+	</bean>
+	<bean id="loginAction" class="com.restraurant.action.LoginAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="productAction" class="com.restraurant.action.ProductAction">
+		<property name="productService" ref="productService"></property>
+		<property name="shopService" ref="shopService"></property>
+		<property name="commentService" ref="commentService"></property>
+		<property name="shops" ref="Member"></property>
+	</bean>
+	<bean id="registerAction" class="com.restraurant.action.RegisterAction">
+		<property name="userService" ref="userService"></property>
+		<property name="shopService" ref="shopService"></property>
+	</bean>
+	<bean id="shopAction" class="com.restraurant.action.ShopAction">
+		<property name="shopService" ref="shopService"></property>
+	</bean>
+</beans>

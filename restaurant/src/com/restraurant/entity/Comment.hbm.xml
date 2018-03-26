@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-7 17:16:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.restraurant.entity.Comment" table="comment">
+        <id name="commentId" type="java.lang.Integer">
+            <column name="commentid" />
+            <generator class="native" />
+        </id>
+        <property name="commentContent" type="java.lang.String">
+            <column name="commentcontent" />
+        </property>
+        <property name="commentCore" type="float">
+            <column name="commentcore" />
+        </property>
+        <property name="commentDate" type="java.lang.String">
+            <column name="commentdate" />
+        </property>
+        <property name="productId" type="java.lang.String">
+            <column name="productid" />
+        </property>
+        <many-to-one name="user" class="com.restraurant.entity.User" fetch="join">
+            <column name="user" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="user" namespace="/" extends="struts-default">
+		<action name="addUser" class="userAction" method="addUser">
+			<result name="success">/view/success.jsp</result>
+		</action>
+		<action name="userLogin" class="userAction" method="userlogin">
+			<result name="success">/view/success.jsp</result>
+			<result name="input">/view/error.jsp</result>
+		</action>
+	</package>
+	<package name="shop" namespace="/" extends="struts-default">
+		<action name="showShopOrders" class="orderManagerAction" method="showShopOrders">
+			<result name="success">shopOrder.jsp</result>
+		</action>
+	
+	</package>
+	
+	<package name="product" namespace="/" extends="struts-default">
+	<action name="showAllProducts" class="productAction" method="showAllProducts">
+		<result name="success">showgoods.jsp</result>
+	</action>
+	<action name="showAllkind" class="productAction" method="showAllkind">
+		<result name="success">allgoods.jsp</result>
+	</action>
+	<action name="showCategorytoAddProduct" class="productAction" method="showCategorytoAddProduct">
+		<result name="success">addProduct.jsp</result>
+	</action>
+	<action name="showAProductsBycategory" class="productAction" method="showAProductsBycategory">
+		<result name="success">showgoods.jsp</result>
+	</action>
+	<action name="showAProductsByArea" class="productAction" method="showAProductsByArea">
+		<result name="success">showgoods.jsp</result>
+	</action>
+	<action name="showProduct" class="productAction" method="showProduct">
+		<result name="success">detail.jsp</result>
+	</action>
+	<action name="showAProductsBySearch" class="productAction" method="showAProductsBySearch">
+		<result name="success">showgoods.jsp</result>
+	</action>
+	<action name="showAllShop" class="productAction" method="showAllShop">
+		<result name="success">shop.jsp</result>
+	</action>
+	<action name="showShop" class="shoptAction" method="showShop">
+		<result name="success">shopMessage.jsp</result>
+	</action>
+	<action name="showCart" class="productAction" method="showCart">
+		<result name="success">cart.jsp</result>
+	</action>
+	<action name="showProductsByOrder" class="productAction" method="showProductsByOrder">
+		<result name="success">showgoods.jsp</result>
+	</action>
+	<action name="showProductsByShop" class="productAction" method="showProductsByShop">
+		<result name="success">productManager.jsp</result>
+	</action>
+	<action name="upload" class="productAction" method="upload">
+		<interceptor-ref name="defaultStack">
+			<param name="fileUpload.allowedTypes">
+				image/pjpeg,image/gif,image/png
+			</param>
+		</interceptor-ref>
+		<result name="success">abc.jsp</result>
+		<result name="input">success.jsp</result>
+	</action>
+	</package>
+	<package name="order" namespace="/" extends="struts-default">
+	<action name="showUserOrders" class="orderManagerAction" method="showUserOrders">
+		<result name="success">userOrder.jsp</result>
+	</action>
+	<action name="showUserMessage" class="userAction" method="showUserMessage">
+		<result name="success">userMessage.jsp</result>
+	</action>
+	<action name="showOrderByOrderNum" class="orderManagerAction" method="showOrderByOrderNum">
+		<result name="success">showUserOrder.jsp</result>
+	</action>
+	<action name="showShopOrderByOrderNum" class="orderManagerAction" method="showShopOrderByOrderNum">
+		<result name="success">showShopOrder.jsp</result>
+	</action>
+	<action name="submitComment" class="orderManagerAction" method="submitComment">
+		<result name="success" type="chain">showUserOrders</result>
+	</action>
+	</package>
+	<package name="ajax" namespace="/" extends="json-default" >
+		<action name="showProductForAjax" class="productAction" method="showProduct">
+			<result name="success" type="json">
+			<param name="root">jsonProduct</param>
+			</result>
+		</action> 
+		<action name="addProduct" class="productAction" method="addProduct">
+			<result name="success" type="json">
+			<param name="root">addProductState</param>
+			</result>
+		</action> 
+		<action name="pay" class="payAction" method="pay">
+			<result name="success" type="json">
+			<param name="root">payState</param>
+			</result>
+		</action>
+		<action name="userLogin" class="loginAction" method="userLogin">
+			<result name="success" type="json">
+			<param name="root">loginState</param>
+			</result>
+		</action>
+		<action name="logout" class="loginAction" method="logout">
+			<result name="success" type="json">
+			</result>
+		</action> 
+		<action name="userRegister" class="registerAction" method="userRegister">
+			<result name="success" type="json">
+			<param name="root">registerState</param>
+			</result>
+		</action>
+		<action name="shopLogin" class="shopAction" method="shopLogin">
+			<result name="success" type="json">
+			<param name="root">shopLoginState</param>
+			</result>
+		</action>
+	</package>
+</struts>

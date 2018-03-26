@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-5 13:52:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.restraurant.entity.Product" table="product">
+        <id name="productId" type="java.lang.String">
+            <column name="productid" />
+            <generator class="assigned" />
+        </id>
+        <property name="productName" type="java.lang.String">
+            <column name="productname" />
+        </property>
+        <property name="productSubtitle" type="java.lang.String">
+            <column name="productsubtitle" />
+        </property>
+        <property name="productOriginalPrize" type="float">
+            <column name="productoriginalprize" />
+        </property>
+        <property name="productSellNum" type="int">
+            <column name="productsellnum" />
+        </property>
+        <property name="productCore" type="float">
+            <column name="productcore" />
+        </property>
+        <property name="productCurrentPrize" type="float">
+            <column name="productcurrentprize" />
+        </property>
+        <property name="productImgUrl" type="java.lang.String">
+            <column name="productimgurl" />
+        </property>
+        <many-to-one name="category" class="com.restraurant.entity.Category" fetch="join">
+            <column name="category" />
+        </many-to-one>
+        <many-to-one name="member" class="com.restraurant.entity.Member" fetch="join">
+            <column name="member" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

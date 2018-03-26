@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+	<!-- 导入资源文件 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- 配置C3P0 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property>
+	     <property name="password" value="${jdbc.password}"></property> <!-- 假如是空密码此处应该删除不然会报c3p0错误 -->
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+	
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"></property>
+			<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+			<property name="mappingLocations" value="classpath:com/restraurant/entity/*.hbm.xml"></property>
+	</bean>
+	<!-- 配置Spring的声明事务 -->
+	<!-- 1.配置hibernate的事务管理器 -->
+		<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+				<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+	<!-- 2配置事务属性 -->
+		<tx:advice id="txAdvice" transaction-manager="transactionManager">
+				<tx:attributes>
+					<!-- hibernate4查询事务的时候也需要配置事务事务
+						isolation="DEFAULT" 隔离级别 乐观策略或者悲观策略。在竞争性资源上加 和数据库有关
+						 propagation=""  定义事务的传播方式 默认为REQUIRED -->
+						<tx:method name="add*" />
+						<tx:method name="save*" />
+						<tx:method name="update*" />
+						<tx:method name="modify*" />
+						<tx:method name="edit*" />
+						<tx:method name="delete*"/>
+						<tx:method name="remove*" />
+						<tx:method name="repair" />
+						<tx:method name="deleteAndRepair" />
+						<tx:method name="count*"/>
+						<tx:method name="get*" />
+						<tx:method name="find*"/>
+						<tx:method name="load*" />
+						<tx:method name="search*"/>
+						<tx:method name="datagrid*" />
+						<tx:method name="*" propagation="SUPPORTS" />
+				</tx:attributes>	
+		</tx:advice>
+	<!-- 3配置事务切入点，在把事物属性和事务切入点关联起来 -->
+	<aop:config>	<!-- *代表任意修饰符，任意返回值   *(..))代表方法 -->
+			<aop:pointcut expression="execution(* com.restraurant.dao.*.*.*(..))" id="txPointcut"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+		</aop:config>
+		<import resource="classpath:applicationContext_config.xml"/>
+</beans>

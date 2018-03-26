@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-3-7 17:25:15 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.restraurant.entity.Order" table="productorder">
+        <id name="orderId" type="java.lang.Integer">
+            <column name="orderid" />
+            <generator class="native" />
+        </id>
+        <property name="orderNum" type="java.lang.String">
+            <column name="ordernum" />
+        </property>
+        <property name="orderPrice" type="java.lang.Float">
+            <column name="orderprice" />
+        </property>
+        <property name="orderIsComment" type="java.lang.Boolean">
+            <column name="orderiscomment" />
+        </property>
+        <property name="orderDate" type="java.lang.String">
+            <column name="orderdate" />
+        </property>
+        <property name="productId" type="java.lang.String">
+            <column name="productid" />
+        </property>
+        <property name="productName" type="java.lang.String">
+            <column name="productname" />
+        </property>
+        <property name="productPrice" type="java.lang.Float">
+            <column name="productprice" />
+        </property>
+        <property name="productCount" type="java.lang.Integer">
+            <column name="productcount" />
+        </property>
+        <property name="memberId" type="java.lang.String">
+            <column name="memberid" />
+        </property>
+        <many-to-one name="user" class="com.restraurant.entity.User" fetch="join">
+            <column name="user" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

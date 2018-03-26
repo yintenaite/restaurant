@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-23 12:38:02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.restraurant.entity.User" table="user">
+        <id name="userId" type="java.lang.String">
+            <column name="userid" />
+            <generator class="assigned" />
+        </id>
+        <property name="userLoginName" type="java.lang.String">
+            <column name="userloginname" />
+        </property>
+        <property name="userNickName" type="java.lang.String">
+            <column name="usernickname" />
+        </property>
+        <property name="userTrueName" type="java.lang.String">
+            <column name="usertruename" />
+        </property>
+        <property name="userPassword" type="java.lang.String">
+            <column name="userpassword" />
+        </property>
+        <property name="userPhone" type="java.lang.String">
+            <column name="userphone" />
+        </property>
+        <property name="userAddress" type="java.lang.String">
+            <column name="useraddress" />
+        </property>
+        <property name="userCreateTime" type="java.lang.String">
+            <column name="usercreatetime" />
+        </property>
+    </class>
+</hibernate-mapping>
